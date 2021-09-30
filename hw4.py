@@ -1,4 +1,7 @@
-
+#Your name: Xinwei Sage Pei 
+#Your student ID: 06426795
+#Your email: xweipei@gmail.com
+#List who you worked with on this project: Marina Sun, Aimee Zheng 
 
 import unittest
 

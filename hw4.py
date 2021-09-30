@@ -191,15 +191,15 @@ class TestAllMethods(unittest.TestCase):
 	# Check that the stall can properly see when it is empty
     def test_has_item(self):
         # Set up to run test cases
-
         # Test to see if has_item returns True when a stall has enough items left
         # Please follow the instructions below to create three different kinds of test cases 
         # Test case 1: the stall does not have this food item: 
-        
+        self.assertFalse(self.s1.has_item("Oranges", 1))
         # Test case 2: the stall does not have enough food item: 
-        
+        self.assertFalse(self.s1.has_item("Burger",70))
         # Test case 3: the stall has the food item of the certain quantity: 
-        pass
+        self.assertTrue(self.s1.has_item("Burger", 1))
+        
 
 	# Test validate order
     def test_validate_order(self):

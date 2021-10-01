@@ -84,11 +84,10 @@ class Stall:
         self.earnings = earnings 
 
     def process_order(self, name, quantity):
-        amount = self.inventory[name]
-        if quantity >= amount: 
-            self.inventory[name] = self.inventory[name]- quantity 
-        else:
-          pass
+        if name in self.inventory: 
+            if self.has_item(name,quantity) == True:
+                 self.inventory[name] = self.inventory[name]- quantity 
+        return self
 
     def has_item(self,name,quantity):
         if name in self.inventory:
@@ -111,7 +110,7 @@ class Stall:
         return total 
 
     def __str__(self):
-        print("Hello, we are", self.name,". THis is the correct menu",self.inventory.keys(),'.We charge $', self.cost, 'per item. We have $'.self.earnings, 'in total.')
+        print("Hello, we are", self.name,". This is the correct menu",self.inventory.keys(),'.We charge $', self.cost, 'per item. We have $'.self.earnings, 'in total.')
 
 class TestAllMethods(unittest.TestCase):
     
@@ -205,16 +204,16 @@ class TestAllMethods(unittest.TestCase):
     def test_validate_order(self):
 		# case 1: test if a customer doesn't have enough money in their wallet to order
         print(self.f2.validate_order(self.c1,self.s1, "Burger",30))
-        print("Don't have enough money for that! Please reload more money!")
+        print("Don't have enough money for that :( Please reload more money!")
 		# case 2: test if the stall doesn't have enough food left in stock
         print(self.f2.validate_order(self.c1,self.s1, "Burger", 3000))
-        print("Our stall has run out of Burgers! Please try a different stall!")
+        print("Our stall has run out of Burgers :( Please try a different stall!")
 		# case 3: check if the cashier can order item from that stall
         self.assertEqual(self.c1.place_order(self.s1,"Burger",1),10)
         # case 4: test to see if cashier has the stall 
         self.s5 = Stall("My Stall", inventory = {})
         print(self.f2.validate_order(self.c1, self.s5,"Burger",30))
-        print("Sorry, we don't have that vendor stall. Please try a different one.")
+        print("Sorry, we don't have that vendor stall :( Please try a different one.")
       
 
     # Test if a customer can add money to their wallet

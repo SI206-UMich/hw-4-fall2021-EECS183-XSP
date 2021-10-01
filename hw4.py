@@ -84,9 +84,9 @@ class Stall:
         self.earnings = earnings 
 
     def process_order(self, name, quantity):
-        if name in self.inventory: 
-            if self.has_item(name,quantity) == True:
-                 self.inventory[name] = self.inventory[name]- quantity 
+        if name in self.inventory:
+            if self.has_item(name,quantity)==True: 
+                 self.inventory[name] = self.inventory[name] - quantity 
         return self
 
     def has_item(self,name,quantity):
@@ -105,9 +105,9 @@ class Stall:
         else: 
             self.inventory[name] = quantity 
 
-    def compute_cost(self,quantity):
-        total = (self.cost) * (quantity)
-        return total 
+    def compute_cost(self, quantity):
+        total = self.cost * quantity
+        return total
 
     def __str__(self):
         print("Hello, we are", self.name,". This is the correct menu",self.inventory.keys(),'.We charge $', self.cost, 'per item. We have $'.self.earnings, 'in total.')
@@ -163,11 +163,11 @@ class TestAllMethods(unittest.TestCase):
         previous_custormer_wallet = self.f2.wallet
         previous_earnings_stall = self.s2.earnings
         
-        self.f2.submit_order(self.c1, self.s2, 30)
+        self.f2.submit_order(self.c1, self.s2, 20)
 
 		# See if money has changed hands
-        self.assertEqual(self.f2.wallet, previous_custormer_wallet - 30)
-        self.assertEqual(self.s2.earnings, previous_earnings_stall + 30)
+        self.assertEqual(self.f2.wallet, previous_custormer_wallet - 20)
+        self.assertEqual(self.s2.earnings, previous_earnings_stall + 20)
 
 
 	# Check to see that the server can serve from the different stalls
@@ -184,8 +184,8 @@ class TestAllMethods(unittest.TestCase):
     def test_compute_cost(self):
         #what's wrong with the following statements?
         #can you correct them?
-        self.assertEqual(self.s1.compute_cost(self.s1,5), 51)
-        self.assertEqual(self.s3.compute_cost(self.s3,6), 45)
+        self.assertEqual(self.s1.compute_cost(51),510)
+        self.assertEqual(self.s3.compute_cost(45),450)
 
 	# Check that the stall can properly see when it is empty
     def test_has_item(self):
